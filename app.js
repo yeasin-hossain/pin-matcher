@@ -43,16 +43,31 @@ const deleteSingleItem = () => {
 };
 
 // Getting The result
+let maxTry = 4;
+let tryCount = document.querySelector('#tryCount');
+tryCount.innerText = maxTry;
 const getResult = () => {
-	if (verifyPin(displayPin.value, userPinDisplay.value)) {
-		document.querySelector('#successMsg').style.display = 'block';
-		setTimeout(() => {
-			document.querySelector('#successMsg').style.display = 'none';
-		}, 3000);
+	if (maxTry === 1) {
+		userPinDisplay.value = '';
+		displayPin.value = '';
+		maxTry = 4;
+		tryCount.innerText = maxTry;
 	} else {
-		document.querySelector('#errorMsg').style.display = 'block';
-		setTimeout(() => {
-			document.querySelector('#errorMsg').style.display = 'none';
-		}, 3000);
+		if (verifyPin(displayPin.value, userPinDisplay.value)) {
+			document.querySelector('#successMsg').style.display = 'block';
+			userPinDisplay.value = '';
+			displayPin.value = '';
+			maxTry = 4;
+			setTimeout(() => {
+				document.querySelector('#successMsg').style.display = 'none';
+			}, 3000);
+		} else {
+			document.querySelector('#errorMsg').style.display = 'block';
+			maxTry = --maxTry;
+			tryCount.innerText = maxTry;
+			setTimeout(() => {
+				document.querySelector('#errorMsg').style.display = 'none';
+			}, 3000);
+		}
 	}
 };
