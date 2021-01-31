@@ -42,22 +42,27 @@ const deleteSingleItem = () => {
 	userPinDisplay.value = arr.join('');
 };
 
-// Getting The result
+// max try Count
 let maxTry = 4;
 let tryCount = document.querySelector('#tryCount');
 tryCount.innerText = maxTry;
+const tyrCountRest = () => {
+	maxTry = 4;
+	tryCount.innerText = maxTry;
+};
+
+// Getting The result
 const getResult = () => {
 	if (maxTry === 1) {
 		userPinDisplay.value = '';
 		displayPin.value = '';
-		maxTry = 4;
-		tryCount.innerText = maxTry;
+		tyrCountRest();
 	} else {
 		if (verifyPin(displayPin.value, userPinDisplay.value)) {
 			document.querySelector('#successMsg').style.display = 'block';
 			userPinDisplay.value = '';
 			displayPin.value = '';
-			maxTry = 4;
+			tyrCountRest();
 			setTimeout(() => {
 				document.querySelector('#successMsg').style.display = 'none';
 			}, 3000);
