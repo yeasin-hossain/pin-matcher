@@ -23,22 +23,25 @@ const getPin = () => {
 	displayPin.value = systemPin;
 };
 
+// Display User Input
 document.querySelector('#numberPad').addEventListener('click', (e) => {
 	if (isNaN(parseInt(e.target.innerText)) != true) {
 		userPinDisplay.value = userPinDisplay.value + e.target.innerText;
 	}
 });
+
 //Clear the input field
 const clearInput = () => {
 	userPinDisplay.value = '';
 };
-// Delete Single Item
 
+// Delete Single Item
 const deleteSingleItem = () => {
 	let arr = [...userPinDisplay.value];
 	arr.pop(arr.length - 1);
 	userPinDisplay.value = arr.join('');
 };
+
 // Getting The result
 const getResult = () => {
 	if (verifyPin(displayPin.value, userPinDisplay.value)) {
