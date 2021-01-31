@@ -24,15 +24,24 @@ const getPin = () => {
 };
 
 document.querySelector('#numberPad').addEventListener('click', (e) => {
-	// if()
 	if (isNaN(parseInt(e.target.innerText)) != true) {
 		userPinDisplay.value = userPinDisplay.value + e.target.innerText;
 	}
 });
-// verifyPin(displayPin, userPinDisplay);
+//Clear the input field
+const clearInput = () => {
+	userPinDisplay.value = '';
+};
+// Delete Single Item
+
+const deleteSingleItem = () => {
+	let arr = [...userPinDisplay.value];
+	arr.pop(arr.length - 1);
+	userPinDisplay.value = arr.join('');
+};
+// Getting The result
 const getResult = () => {
 	if (verifyPin(displayPin.value, userPinDisplay.value)) {
-		console.log(displayPin.value);
 		document.querySelector('#successMsg').style.display = 'block';
 		setTimeout(() => {
 			document.querySelector('#successMsg').style.display = 'none';
@@ -42,6 +51,5 @@ const getResult = () => {
 		setTimeout(() => {
 			document.querySelector('#errorMsg').style.display = 'none';
 		}, 3000);
-		console.log('Fuck You ');
 	}
 };
